@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 
+import Image from "next/image";
 import Countdown from "./countdown";
 import People from "./people";
-import { Logo } from "./svgs";
 import Form from "./form";
 
 export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
@@ -14,7 +14,22 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
 	return (
 		<div className="flex flex-col items-center justify-center gap-6">
 			<div className="flex flex-col items-center justify-center gap-6 mb-6">
-				<Logo />
+				<Image
+					src="/equire_dark.png"
+					alt="Equire"
+					width={200}
+					height={54}
+					className="dark:hidden"
+					priority
+				/>
+				<Image
+					src="/equire_light.png"
+					alt="Equire"
+					width={200}
+					height={54}
+					className="hidden dark:block"
+					priority
+				/>
 				<div className="flex items-center gap-4 rounded-full border border-border px-4 py-1 relative">
 					<span className="relative flex h-2 w-2">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />

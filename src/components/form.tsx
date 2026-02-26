@@ -65,23 +65,23 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 				throw new Error(err);
 			}
 
-			const notionRes = await fetch("/api/notion", {
+			const waitlistRes = await fetch("/api/waitlist", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload),
 			});
 
-			if (!notionRes.ok) {
-				const errData = await notionRes.json();
-				if (notionRes.status === 409) {
+			if (!waitlistRes.ok) {
+				const errData = await waitlistRes.json();
+				if (waitlistRes.status === 409) {
 					toast.error(errData.error || "You're already on the waitlist!");
 					return;
 				}
-				const err = notionRes.status === 429 ? "Rate limited" : "Notion failed";
+				const err = waitlistRes.status === 429 ? "Rate limited" : "Save failed";
 				throw new Error(err);
 			}
 
-			const { code } = await notionRes.json();
+			const { code } = await waitlistRes.json();
 			const link = `${window.location.origin}/?ref=${code}`;
 			setShareLink(link);
 

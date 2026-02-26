@@ -2,8 +2,9 @@
 
 import { cn } from "~/lib/utils";
 import { useScroll } from "~/hooks/use-scroll";
-import { GithubLogo, NotionLogo } from "./svgs";
+import { GithubLogo } from "./svgs";
 import { Button } from "./ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
@@ -17,11 +18,23 @@ export default function Header() {
 					"bg-background/50 md:bg-transparent md:backdrop-blur-none backdrop-blur-sm",
 			)}
 		>
-			<Link href="#" className="cursor-pointer">
-				<Button variant="secondary">
-					<NotionLogo />
-					Notion DB Sample
-				</Button>
+			<Link href="/" className="flex items-center">
+				<Image
+					src="/equire_dark.png"
+					alt="Equire"
+					width={120}
+					height={32}
+					className="dark:hidden"
+					priority
+				/>
+				<Image
+					src="/equire_light.png"
+					alt="Equire"
+					width={120}
+					height={32}
+					className="hidden dark:block"
+					priority
+				/>
 			</Link>
 
 			<div className="flex items-center gap-2">

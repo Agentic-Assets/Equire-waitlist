@@ -1,38 +1,26 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { notion } from "./notion";
+import { getSupabase } from "./supabase";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function getNotionDatabaseRowCount(databaseId: string) {
-  try {
-    let allResults: unknown[] = [];
-    let hasMore = true;
-    let startCursor: string | null = null;
+export async function getWaitlistCount() {
+  const { count, error } = await getSupabase()
+    .from("waitlist")
+    .select("*", { count: "exact", head: true });
 
-    // Fetch all pages from the database (handling pagination)
-    while (hasMore) {
-      const response = await notion.databases.query({
-        database_id: databaseId,
-        start_cursor: startCursor ?? undefined,
-        page_size: 100,
-      });
-
-      allResults = allResults.concat(response.results);
-      hasMore = response.has_more;
-      startCursor = response.next_cursor;
-    }
-
-    return allResults.length;
-  } catch (error) {
-    console.error("Error fetching database rows:", error);
+  if (error) {
+    console.error("Error fetching waitlist count:", error);
     throw error;
   }
+
+  return count ?? 0;
 }
-// Simple referral code generator used in the Notion API route
+
+// Simple referral code generator used in the waitlist API route
 const REFERRAL_CODE_CHARSET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 export function generateCode(length = 8): string {

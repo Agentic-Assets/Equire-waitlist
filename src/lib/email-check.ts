@@ -1,9 +1,11 @@
-import { notion, NOTION_DB_ID } from "./notion";
+import { getSupabase } from "./supabase";
 
 export async function checkEmailExists(email: string) {
-  const existing = await notion.databases.query({
-    database_id: NOTION_DB_ID,
-    filter: { property: "Email", email: { equals: email } }
-  });
-  return existing.results.length > 0;
+  const { data } = await getSupabase()
+    .from("waitlist")
+    .select("id")
+    .eq("email", email)
+    .limit(1);
+
+  return (data?.length ?? 0) > 0;
 }
