@@ -6,13 +6,13 @@ import WelcomeTemplate from "~/emails";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
-	const { email, name } = await request.json();
+	const { email, firstname } = await request.json();
 
 	const { data, error } = await resend.emails.send({
 		from: process.env.RESEND_FROM_EMAIL || "",
 		to: [email],
 		subject: "Welcome to the EQUIRE Waitlist",
-		react: WelcomeTemplate({ userFirstname: name }),
+		react: WelcomeTemplate({ userFirstname: firstname }),
 	});
 
 	if (error) {

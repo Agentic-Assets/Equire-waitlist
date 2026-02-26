@@ -54,17 +54,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 				referredBy: refCode || undefined,
 			};
 
-			const mailRes = await fetch("/api/mail", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(payload),
-			});
-
-			if (!mailRes.ok) {
-				const err = mailRes.status === 429 ? "Rate limited" : "Email failed";
-				throw new Error(err);
-			}
-
+			// Save to waitlist first (critical operation)
 			const waitlistRes = await fetch("/api/waitlist", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -82,6 +72,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 			}
 
 			const { code } = await waitlistRes.json();
+
+			// Send welcome email (non-critical, don't block on failure)
+			fetch("/api/mail", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(payload),
+			}).catch(() => {});
 			const link = `${window.location.origin}/?ref=${code}`;
 			setShareLink(link);
 
