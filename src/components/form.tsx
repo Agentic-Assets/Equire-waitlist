@@ -147,12 +147,12 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 						<input
 							value={shareLink}
 							readOnly
-							className="flex-1 px-3 py-2 border rounded-lg text-black text-sm bg-gray-50"
+							className="flex-1 px-3 py-2 border rounded-lg text-foreground text-sm bg-surface-light"
 						/>
 						<button
 							type="button"
 							onClick={copyLink}
-							className="px-4 py-2 bg-[#e5ff00] text-black rounded-lg font-medium hover:bg-opacity-90"
+							className="px-4 py-2 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90"
 						>
 							Copy
 						</button>
@@ -160,7 +160,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 					<button
 						type="button"
 						onClick={resetForm}
-						className="text-sm text-gray-600 underline"
+						className="text-sm text-text-muted underline"
 					>
 						Join with another email
 					</button>
@@ -182,13 +182,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 									value={formData.email}
 									onChange={handleChange}
 									placeholder="Email"
-									className="flex-grow bg-background border border-border text-foreground px-4 py-3 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-[#e5ff00] focus:ring-offset-2"
+									className="flex-grow bg-background border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
 									disabled={loading}
 									required
 								/>
 								<button
 									type="submit"
-									className="absolute right-0 top-0 bottom-0 bg-[#e5ff00] text-black px-5 py-2 m-2 rounded-[12px] font-semibold hover:bg-opacity-90 disabled:opacity-50"
+									className="absolute right-0 top-0 bottom-0 bg-accent text-accent-foreground px-5 py-2 m-2 rounded-lg font-semibold hover:bg-accent/90 disabled:opacity-50 flex items-center justify-center"
 									disabled={loading}
 								>
 									Continue
@@ -200,7 +200,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 								initial={{ opacity: 0, x: 20 }}
 								animate={{ opacity: 1, x: 0 }}
 								exit={{ opacity: 0, x: 20 }}
-								className="space-y-3来说"
+								className="space-y-3"
 							>
 								<input
 									type="text"
@@ -208,12 +208,12 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 									value={formData.name}
 									onChange={handleChange}
 									placeholder="Name (optional)"
-									className="w-full bg-background border border-border text-foreground px-4 py-3 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-[#e5ff00] focus:ring-offset-2"
+									className="w-full bg-background border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
 									disabled={loading}
 								/>
 								<button
 									type="submit"
-									className="w-full bg-[#e5ff00] text-black py-3 rounded-[12px] font-semibold hover:bg-opacity-90 disabled:opacity-50 flex items-center justify-center"
+									className="w-full bg-accent text-accent-foreground py-3 rounded-lg font-semibold hover:bg-accent/90 disabled:opacity-50 flex items-center justify-center"
 									disabled={loading}
 								>
 									{loading ? (

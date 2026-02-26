@@ -1,26 +1,33 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter_Tight } from "next/font/google";
+import { DM_Sans, DM_Mono, Lora } from "next/font/google";
 import { Toaster } from "sonner";
 
 import "./globals.css";
 import Header from "~/components/header";
 import { ThemeProvider } from "~/providers/theme-provider";
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+	variable: "--font-dm-sans",
 	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
 });
 
-const interTight = Inter_Tight({
-	variable: "--font-inter-tight",
+const dmMono = DM_Mono({
+	variable: "--font-dm-mono",
+	subsets: ["latin"],
+	weight: ["400", "500"],
+});
+
+const lora = Lora({
+	variable: "--font-lora",
 	subsets: ["latin"],
 	weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-	title: "Revoks — Next.js + Notion Waitlist Template",
+	title: "EQUIRE — AI-Powered Deal Intelligence for CRE",
 	description:
-		"A simple Next.js waitlist template with Notion as CMS and Resend to send emails created with React Email and Upstash Redis for rate limiting. Deployed on Vercel.",
+		"AI-powered deal intelligence for commercial real estate acquisitions. From document ingestion to IC memo — in a fraction of the time.",
 };
 
 export default function RootLayout({
@@ -31,7 +38,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="h-full" suppressHydrationWarning>
 			<body
-				className={`${interTight.variable} ${geistMono.variable} antialiased flex flex-col h-full`}
+				className={`${dmSans.variable} ${dmMono.variable} ${lora.variable} antialiased flex flex-col h-full`}
 			>
 				<ThemeProvider>
 					<Header />
