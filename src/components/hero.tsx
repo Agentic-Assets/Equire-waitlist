@@ -48,7 +48,7 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
 				<p className="text-base sm:text-lg text-muted-foreground text-center max-w-lg">
 					{isSuccess
 						? "We'll be in touch as soon as early access opens. In the meantime, share your link to move up the line."
-						: "AI-powered deal intelligence for commercial real estate acquisitions. From document ingestion to IC memo \u2014 in a fraction of the time."}
+						: "From document extraction to IC memo — a structured, research-powered execution environment where every assumption is tracked, every output defensible, and your team moves as one."}
 				</p>
 			</div>
 
