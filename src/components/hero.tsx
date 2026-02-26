@@ -43,7 +43,7 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
 				<h1 className="text-4xl sm:text-5xl font-medium text-foreground text-center leading-tight font-heading">
 					{isSuccess
 						? "You're on the list."
-						: "Close Smarter Deals, Faster."}
+						: "AI-Native Deal Execution for Commercial Real Estate"}
 				</h1>
 				<p className="text-base sm:text-lg text-muted-foreground text-center max-w-lg">
 					{isSuccess
