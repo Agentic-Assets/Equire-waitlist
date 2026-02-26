@@ -26,9 +26,9 @@ const props = [
 
 export default function ValueProps() {
 	return (
-		<div className="py-16 px-4">
+		<div className="py-10 sm:py-16 px-4">
 			<div className="max-w-4xl mx-auto">
-				<div className="text-center mb-12">
+				<div className="text-center mb-8 sm:mb-12">
 					<h2 className="text-2xl sm:text-3xl font-semibold text-foreground font-heading">
 						Execution Infrastructure for Modern Acquisitions Teams
 					</h2>
@@ -36,7 +36,7 @@ export default function ValueProps() {
 						A structured, research-driven environment for underwriting, diligence, and IC delivery.
 					</p>
 				</div>
-				<div className="grid sm:grid-cols-3 gap-8 items-start">
+				<div className="grid sm:grid-cols-3 gap-6 sm:gap-8 items-start">
 					{props.map((prop, i) => (
 						<motion.div
 							key={prop.title}

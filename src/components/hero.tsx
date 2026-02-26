@@ -10,7 +10,7 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
 	const [isSuccess, setIsSuccess] = useState(false);
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-8 pt-12 pb-8">
+		<div className="flex flex-col items-center justify-center gap-6 sm:gap-8 pt-8 sm:pt-12 pb-6 sm:pb-8">
 			<div className="flex flex-col items-center justify-center gap-5">
 				<Image
 					src="/equire_dark.png"
@@ -40,12 +40,12 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
 			</div>
 
 			<div className="flex flex-col items-center justify-center gap-3 max-w-2xl px-4">
-				<h1 className="text-4xl sm:text-5xl font-medium text-foreground text-center leading-tight font-heading">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-foreground text-center leading-tight font-heading">
 					{isSuccess
 						? "You're on the list."
 						: "AI-Native Deal Execution for Commercial Real Estate"}
 				</h1>
-				<p className="text-base sm:text-lg text-muted-foreground text-center max-w-lg">
+				<p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center max-w-lg">
 					{isSuccess
 						? "We'll be in touch as soon as early access opens. In the meantime, share your link to move up the line."
 						: "From document extraction to IC memo — a structured, research-powered execution environment where every assumption is tracked, every output defensible, and your team moves as one."}
