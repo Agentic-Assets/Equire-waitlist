@@ -27,7 +27,7 @@ const lora = Lora({
 export const metadata: Metadata = {
 	title: "EQUIRE — AI-Powered Deal Intelligence for CRE",
 	description:
-		"AI-powered deal intelligence for commercial real estate acquisitions. From document ingestion to IC memo — in a fraction of the time.",
+		"Extract rent rolls, normalize financials, run DCF models, generate IC memos.",
 };
 
 export default function RootLayout({

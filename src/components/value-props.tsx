@@ -30,10 +30,10 @@ export default function ValueProps() {
 			<div className="max-w-4xl mx-auto">
 				<div className="text-center mb-12">
 					<h2 className="text-2xl sm:text-3xl font-semibold text-foreground font-heading">
-						One Platform. Every Step of Acquisitions.
+						Execution Infrastructure for Modern Acquisitions Teams
 					</h2>
 					<p className="text-muted-foreground mt-2 max-w-lg mx-auto">
-						Your entire deal workflow in a single intelligent workspace.
+						A structured, research-driven environment for underwriting, diligence, and IC delivery.
 					</p>
 				</div>
 				<div className="grid sm:grid-cols-3 gap-8 items-start">
