@@ -20,36 +20,16 @@ export default function Header() {
 		>
 			<Link href="/" className="flex items-center">
 				<Image
-					src="/equire_dark.png"
-					alt="Equire"
-					width={120}
-					height={32}
-					className="dark:hidden"
-					priority
-				/>
-				<Image
-					src="/equire_light.png"
-					alt="Equire"
-					width={120}
-					height={32}
-					className="hidden dark:block"
+					src="/agentic-logo.png"
+					alt="Agentic Assets"
+					width={180}
+					height={20}
+					className="dark:invert"
 					priority
 				/>
 			</Link>
 
-			<div className="flex items-center gap-2">
-				<Link
-					href="https://github.com/new?template_name=Waitly&template_owner=revokslab"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="cursor-pointer"
-				>
-					<Button variant="secondary">
-						<GithubLogo />
-						Use this template
-					</Button>
-				</Link>
-			</div>
+			<div className="flex items-center gap-2" />
 		</header>
 	);
 }

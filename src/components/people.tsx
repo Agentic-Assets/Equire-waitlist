@@ -78,9 +78,8 @@ export default function People({
 							alt={`Waitlist member ${index + 1}`}
 							className="w-full h-full object-cover"
 							onError={(e) => {
-								// Fallback for missing images
 								(e.target as HTMLImageElement).src =
-									"https://via.placeholder.com/40";
+									"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23e2ddd6'/%3E%3C/svg%3E";
 							}}
 						/>
 					</div>
