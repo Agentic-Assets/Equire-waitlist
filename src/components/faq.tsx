@@ -7,7 +7,7 @@ import {
 
 export default function Faq() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6 py-10 px-4">
+		<div className="flex flex-col items-center justify-center gap-6 py-8 sm:py-10 px-4">
 			<div className="flex flex-col items-center justify-center gap-2 max-w-md">
 				<h2 className="sm:text-3xl text-2xl font-semibold text-foreground font-heading">
 					Frequently Asked Questions

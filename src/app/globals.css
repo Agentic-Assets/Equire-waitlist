@@ -240,6 +240,15 @@
   box-shadow: var(--shadow-card-hover);
 }
 
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Glass morphism */
 .glass {
   background: var(--glass-bg);

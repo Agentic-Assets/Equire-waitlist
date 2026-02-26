@@ -182,7 +182,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 									value={formData.email}
 									onChange={handleChange}
 									placeholder="Email"
-									className="flex-grow bg-background border border-border text-foreground px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+									className="flex-grow bg-background border border-border text-foreground px-4 py-3 pr-28 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
 									disabled={loading}
 									required
 								/>
