@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -10,6 +10,7 @@ const screens = [
 		id: "pipeline",
 		label: "Deal Pipeline",
 		src: "/screenshots/pipeline.png",
+		mockupUrl: "/mockups/pipeline",
 		description:
 			"Track every deal from screening to close. Real-time stats, stage-based views, and team-wide visibility.",
 	},
@@ -17,6 +18,7 @@ const screens = [
 		id: "extraction",
 		label: "Data Extraction",
 		src: "/screenshots/extraction.png",
+		mockupUrl: "/mockups/extraction",
 		description:
 			"Upload documents and let EQUIRE extract structured data — with source provenance and conflict detection built in.",
 	},
@@ -24,20 +26,23 @@ const screens = [
 		id: "valuation",
 		label: "Valuation & DCF",
 		src: "/screenshots/valuation.png",
+		mockupUrl: "/mockups/valuation",
 		description:
 			"Fully underwritten DCF models with scenario analysis, sensitivity tables, and assumption traceability.",
 	},
 	{
 		id: "deal-overview",
-		label: "Deal Overview",
+		label: "AI Deal Assistant",
 		src: "/screenshots/deal-overview.png",
+		mockupUrl: "/mockups/chat",
 		description:
-			"One view for everything: AI-powered risk analysis, due diligence checklists, activity feed, and deal metrics.",
+			"AI-powered risk analysis, due diligence checklists, activity feed, and deal metrics — all in one view.",
 	},
 	{
 		id: "ic-memo",
 		label: "IC Memo",
 		src: "/screenshots/ic-memo.png",
+		mockupUrl: "/mockups/ic-memo",
 		description:
 			"Auto-generated investment committee memos with tenant analysis, market context, and export-ready formatting.",
 	},
@@ -45,6 +50,19 @@ const screens = [
 
 export default function Screenshots() {
 	const [active, setActive] = useState(0);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [iframeScale, setIframeScale] = useState(1);
+
+	useEffect(() => {
+		const el = containerRef.current;
+		if (!el) return;
+		const observer = new ResizeObserver((entries) => {
+			const width = entries[0].contentRect.width;
+			setIframeScale(width / 960);
+		});
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, []);
 
 	const prev = () => setActive((i) => (i === 0 ? screens.length - 1 : i - 1));
 	const next = () => setActive((i) => (i === screens.length - 1 ? 0 : i + 1));
@@ -57,7 +75,7 @@ export default function Screenshots() {
 						See It in Action
 					</h2>
 					<p className="text-muted-foreground mt-2 max-w-lg mx-auto text-sm sm:text-base">
-						A look inside the platform.
+						Explore the platform — these are interactive mockups.
 					</p>
 				</div>
 
@@ -81,9 +99,25 @@ export default function Screenshots() {
 					</div>
 				</div>
 
-				{/* Screenshot display with nav arrows */}
+				{/* Browser chrome wrapper */}
 				<div className="relative group">
 					<div className="rounded-xl border border-border overflow-hidden bg-surface">
+						{/* Title bar */}
+						<div className="flex items-center gap-2 px-4 py-2.5 bg-surface-light border-b border-border">
+							<div className="flex gap-1.5">
+								<span className="w-3 h-3 rounded-full bg-danger/60" />
+								<span className="w-3 h-3 rounded-full bg-warning/60" />
+								<span className="w-3 h-3 rounded-full bg-success/60" />
+							</div>
+							<div className="flex-1 text-center">
+								<span className="text-xs text-text-dim font-mono">
+									equire.ai / {screens[active].label.toLowerCase().replace(/ /g, "-")}
+								</span>
+							</div>
+							<div className="w-[54px]" />
+						</div>
+
+						{/* Interactive iframe — desktop only */}
 						<AnimatePresence mode="wait">
 							<motion.div
 								key={screens[active].id}
@@ -92,14 +126,36 @@ export default function Screenshots() {
 								exit={{ opacity: 0 }}
 								transition={{ duration: 0.2 }}
 							>
-								<Image
-									src={screens[active].src}
-									alt={screens[active].label}
-									width={1200}
-									height={700}
-									className="w-full h-auto"
-									priority={active === 0}
-								/>
+								{/* Desktop: 960×540 iframe scaled to fit container width */}
+								<div
+									ref={containerRef}
+									className="hidden md:block relative overflow-hidden w-full"
+									style={{ aspectRatio: "960 / 540" }}
+								>
+									<iframe
+										src={screens[active].mockupUrl}
+										title={screens[active].label}
+										className="absolute top-0 left-0 border-0 origin-top-left"
+										style={{
+											width: "960px",
+											height: "540px",
+											transform: `scale(${iframeScale})`,
+										}}
+										loading={active === 0 ? "eager" : "lazy"}
+									/>
+								</div>
+
+								{/* Mobile: static screenshot */}
+								<div className="block md:hidden">
+									<Image
+										src={screens[active].src}
+										alt={screens[active].label}
+										width={1200}
+										height={700}
+										className="w-full h-auto"
+										priority={active === 0}
+									/>
+								</div>
 							</motion.div>
 						</AnimatePresence>
 					</div>
