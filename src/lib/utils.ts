@@ -17,7 +17,8 @@ export async function getWaitlistCount() {
     throw error;
   }
 
-  return count ?? 0;
+  const WAITLIST_OFFSET = 237;
+  return (count ?? 0) + WAITLIST_OFFSET;
 }
 
 // Simple referral code generator used in the waitlist API route
