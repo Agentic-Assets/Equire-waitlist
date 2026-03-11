@@ -22,6 +22,7 @@ export default function People({
 		{ id: "avatar2", src: "/avatars/avatar2.avif" },
 		{ id: "avatar3", src: "/avatars/avatar3.avif" },
 		{ id: "avatar4", src: "/avatars/avatar4.avif" },
+		{ id: "avatar5", src: "/avatars/avatar5.png", objectPosition: "top" as const },
 	];
 
 	// Animate count from initialCount to count when component mounts
@@ -71,12 +72,12 @@ export default function People({
 				{avatars.map((avatar, index) => (
 					<div
 						key={avatar.id}
-						className="w-8 h-8 rounded-full border-2 border-border overflow-hidden"
+						className="w-8 h-8 rounded-full border-2 border-border overflow-hidden shrink-0"
 					>
 						<img
 							src={avatar.src}
 							alt={`Waitlist member ${index + 1}`}
-							className="w-full h-full object-cover"
+							className={`w-full h-full object-cover ${"objectPosition" in avatar ? "object-top" : ""}`}
 							onError={(e) => {
 								(e.target as HTMLImageElement).src =
 									"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23e2ddd6'/%3E%3C/svg%3E";
