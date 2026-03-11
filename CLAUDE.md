@@ -40,6 +40,7 @@ RESEND_API_KEY
 RESEND_FROM_EMAIL
 UPSTASH_REDIS_REST_URL
 UPSTASH_REDIS_REST_TOKEN
+WAITLIST_HOURLY_EPOCH           # Optional: ISO date for hourly count increment
 ```
 
 ## Tooling Notes
