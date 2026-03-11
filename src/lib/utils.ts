@@ -17,14 +17,14 @@ export async function getWaitlistCount() {
     throw error;
   }
 
-  // Display: 803 base + 1 per hour (ignores DB count to keep number modest)
-  const BASE = 803;
+  // Display: real count + 803 offset + 1 per hour since epoch
+  const OFFSET = 803;
   const epochMs = process.env.WAITLIST_HOURLY_EPOCH
     ? new Date(process.env.WAITLIST_HOURLY_EPOCH).getTime()
     : new Date("2026-03-11T00:00:00Z").getTime();
   const hoursSinceEpoch = Math.max(0, Math.floor((Date.now() - epochMs) / 3_600_000));
 
-  return BASE + hoursSinceEpoch;
+  return (count ?? 0) + OFFSET + hoursSinceEpoch;
 }
 
 // Simple referral code generator used in the waitlist API route
